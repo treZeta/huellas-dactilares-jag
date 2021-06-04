@@ -1,0 +1,27 @@
+body{
+    background: #121212;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    background: #444444;
+    width: 700px;
+    margin: auto;
+    margin-top: 30px;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.container > p {
+    margin-bottom: 20px;
+}
+
+.button{
+    background: #1b3cf5;
+    color: #ffffff;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+}
