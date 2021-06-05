@@ -6,9 +6,16 @@
 ?>
 
 <html>
-<head>
-<meta http-equiv="x-ua-compatible" content="IE=10">
-<title>Huella digital del usuario | Registro</title>
+    <head>
+        <title>Validacion exitosa</title>
+        <meta name="author" content="Fingerprints">
+        <meta name="robots" content="0">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/styles.css">
+        <meta http-equiv="x-ua-compatible" content="IE=10">
+    </head>
 
 
 <?php
