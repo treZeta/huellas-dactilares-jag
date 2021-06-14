@@ -9,6 +9,7 @@
 <head>
 <meta http-equiv="x-ua-compatible" content="IE=10">
 <title>Huella digital del usuario | Registro</title>
+<link rel="stylesheet" href="css/main.css">
 
 
 <?php
