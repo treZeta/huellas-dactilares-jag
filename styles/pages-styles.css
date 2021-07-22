@@ -1,0 +1,29 @@
+#paginas ul{
+    display: flex;
+    justify-content: center;
+}
+
+#paginas li{
+    flex-basis: 35px;
+    margin: 0 13px;
+    background: #cccccc;
+    list-style: none;
+    text-align: center;
+}
+
+#paginas li > a{
+    display: block;
+    text-decoration: none;
+    color: #000000;
+    padding: 7px 0;
+    
+}
+
+#paginas li.paginaActual{
+    color: #ffffff;
+    background: #2980b9;
+}
+
+#paginas li.paginaActual > a{
+    color: #ffffff;
+}

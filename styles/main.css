@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap');
+@import url('form_styles.css');
+@import url('input_styles.css');
+@import url('sistema_pae_styles.css');
+@import url('nav-bar-styles.css');
+@import url('table-styles.css');
+@import url('pages-styles.css');
+
+body{
+    background: #3498DB;
+}
+
+*{
+    font-family: 'Noto Sans JP', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.disabled{
+    cursor: not-allowed;
+}

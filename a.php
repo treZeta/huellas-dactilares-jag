@@ -51,7 +51,7 @@ if(preg_match('/msie/', $user_agent)){
     echo "<div id='jmu_user_registration'>";    
     $reg_print1 = "<h3>Panel de registro de usuarios</h3>";
     //$reg_print1 .= "<form name='jmu_userregnform' id='jmu_userregnform' action='jmu_fpuser_processing.php' method='post' onsubmit='return valUSERREGN();'>";
-	$reg_print1 .= "<form name='jmu_userregnform' id='jmu_userregnform' action='' method='post' onsubmit='return valUSERREGN();'>";
+	$reg_print1 .= "<form action='' method='post' onsubmit='return valUSERREGN();'>";
     $reg_print1 .= "<br />";		
     $reg_print1 .= "<table>
     <tr>
@@ -70,10 +70,10 @@ if(preg_match('/msie/', $user_agent)){
 
 
     $reg_print3 = "<tr><td>
-    <input type='hidden' name='fu_no1' id='fu_no1' size='30'>
-    <input type='hidden' name='fputemplate1' id='fputemplate1' value='' size='30'>
-    <input type='hidden' name='fu_no2' id='fu_no2' size='30'>
-    <input type='hidden' name='fputemplate2' id='fputemplate2' value='' size='30'>
+    <input type='hidden' name='huella1_id' id='huella1_id' size='30'>
+    <input type='hidden' name='huella1' id='huella1' value='' size='30'>
+    <input type='hidden' name='huella2_id' id='huella2_id' size='30'>
+    <input type='hidden' name='huella2' id='huella2' value='' size='30'>
     <input type='reset' name='btnresetr' value='Borrar' class='button'>
     </td>
     <td><input class='button' type='submit' name='btnsubmit' value='Grabar' size='30'></td>
