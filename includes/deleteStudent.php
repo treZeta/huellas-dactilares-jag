@@ -1,5 +1,12 @@
 <?php 
 
+    include 'userSession.php';
+    $userSession = new userSession();
+
+    if(!isset($_SESSION['user'])){
+        header('Location: ../home.php');
+    }
+
     if(isset($_POST['id_estudiante'])){
 
         $studentId = $_POST['id_estudiante'];

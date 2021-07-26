@@ -2,7 +2,7 @@
     <form autocomplete="off" id="formRegistroUsuarios" name="formRegistroUsuarios" action="" method="POST"
         onsubmit="return validarCampos()">
 
-        <h1>Registrar usuario</h1>
+        <h1><?php if(isset($_POST['id_estudiante'])){ echo "Editar Estudiante"; } else { echo "Registrar Estudiante"; } ?></h1>
         <input type="text" name="nombres" id="nombres" placeholder="Nombres" <?php echo "value='$nombres'" ?>>
         <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos" <?php echo "value='$apellidos'" ?>>
         <input type="text" name="id" id="id" placeholder="ID" <?php echo "value='$id'" ?>>

@@ -47,9 +47,7 @@
         var regftyp = gtftyp;
         var regval = ridval;
         var vidstart = document.getElementById("authstat").value;
-        var id = document.getElementById("dbfpempid-" + regval).value;
-        var idmbresame = document.getElementById("dbfpempfname-" + regval).value;
-        var empapellidosame = document.getElementById("dbfpempsname-" + regval).value;
+        var id = document.getElementById("id-" + regval).value;
 
         if (regftyp == 1) {
             var fpno = fp1no;
@@ -151,71 +149,51 @@ if (isset($_POST['service'])) {
 
     <?php
 
-	$staff_count = 0;
+	$numeroEstudiantes = 0;
 
-	$query = $db->connect()->prepare("SELECT id, nombres, apellidos, huella1, huella2 FROM estudiantes WHERE programaAlimentario = :programaAlimentario");
+	$query = $db->connect()->prepare("SELECT id, huella1, huella2 FROM estudiantes WHERE programaAlimentario = :programaAlimentario");
 
 	$query->execute(array(':programaAlimentario' => $service));
 
 	foreach ($query as $row) {
-		$fpdata1[] = $row['huella1'];
-		$fpdata2[] = $row['huella2'];
-		$fpid[] = $row['id'];
-		$fpempfname[] = $row['nombres'];
-		$fpempsname[] = $row['apellidos'];
-		$staff_count++;
+		$huella1[] = $row['huella1'];
+		$huella2[] = $row['huella2'];
+		$idEstudiante[] = $row['id'];
+		$numeroEstudiantes++;
 	}
 
-	if ($staff_count >= 1) {
+	if ($numeroEstudiantes >= 1) {
 
-		for ($i = 0; $i < sizeof($fpid); $i++) {
+		for ($i = 0; $i < sizeof($idEstudiante); $i++) {
 			$k = $i + 1;
 		}
 
-		$fpdata1_count = 1;
-		foreach ($fpdata1 as $fpdata1_val) {
+		$huella1_indice = 1;
+		foreach ($huella1 as $huella1Actual) {
 	?>
-    <input type="hidden" name="dbhexstr1[]" id="<?php echo "dbhexstr1-$fpdata1_count"; ?>"
-        value="<?php echo $fpdata1_val; ?>">
+    <input type="hidden" name="huellas1[]" id="<?php echo "dbhexstr1-$huella1_indice"; ?>"
+        value="<?php echo $huella1Actual; ?>">
     <?php
-			$fpdata1_count++;
+			$huella1_indice++;
 		}
-		$fpdata2_count = 1;
-		foreach ($fpdata2 as $fpdata2_val) {
+		$huella2_indice = 1;
+		foreach ($huella2 as $huella2Actual) {
 		?>
-    <input type="hidden" name="dbhexstr1[]" id="<?php echo "dbhexstr2-$fpdata2_count"; ?>"
-        value="<?php echo $fpdata2_val; ?>">
+    <input type="hidden" name="huellas2[]" id="<?php echo "dbhexstr2-$huella2_indice"; ?>"
+        value="<?php echo $huella2Actual; ?>">
     <?php
-			$fpdata2_count++;
+			$huella2_indice++;
 		}
-		$fpempid_count = 1;
-		foreach ($fpid as $fpempid_val) {
+		$idEstudiante_indice = 1;
+		foreach ($idEstudiante as $idEstudianteActual) {
 		?>
-    <input type="hidden" name="dbfpempid[]" id="<?php echo "dbfpempid-$fpempid_count"; ?>"
-        value="<?php echo $fpempid_val; ?>">
+    <input type="hidden" name="id[]" id="<?php echo "id-$idEstudiante_indice"; ?>"
+        value="<?php echo $idEstudianteActual; ?>">
     <?php
-			$fpempid_count++;
+			$idEstudiante_indice++;
 		}
 
-		$fpempfname_count = 1;
-		foreach ($fpempfname as $fpempid_val) {
-		?>
-    <input type="hidden" name="dbfpempfname[]" id="<?php echo "dbfpempfname-$fpempfname_count"; ?>"
-        value="<?php echo $fpempid_val; ?>">
-    <?php
-			$fpempfname_count++;
-		}
-
-		$fpempsname_count = 1;
-		foreach ($fpempsname as $fpempid_val) {
-		?>
-    <input type="hidden" name="dbfpempsname[]" id="<?php echo "dbfpempsname-$fpempsname_count"; ?>"
-        value="<?php echo $fpempid_val; ?>">
-    <?php
-			$fpempsname_count++;
-		}
-
-		echo '<input type="hidden" name="cntstaff" id="cntstaff" class="cntstaff" value="' . sizeof($fpid) . '">';
+		echo '<input type="hidden" name="cntstaff" id="cntstaff" class="cntstaff" value="' . sizeof($idEstudiante) . '">';
 		echo '<input type="hidden" name="authstat" id="authstat" class="authstat" value="-1" onchange="endVeri()">';
 	}
 

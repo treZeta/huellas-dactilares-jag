@@ -7,7 +7,7 @@
         <div class="actions-container">
             <form id="form-editar" method="POST" action="editStudent.php">
                 <input type="hidden" id="id_estudiante" name="id_estudiante" value="<?php echo $estudiante["id"]; ?> ">
-                <div class="button-editar" onclick="submit()">
+                <div class="button-editar" onclick="this.parentNode.submit()">
                     <i class="fas fa-user-edit"></i>
                     <input class="button-editar" type="submit" value="editar">
                 </div>
@@ -15,7 +15,7 @@
 
             <form id="form-eliminar" method="POST" action="includes/deleteStudent.php">
                 <input type="hidden" id="id_estudiante" name="id_estudiante" value="<?php echo $estudiante["id"]; ?>">
-                <div class="button-eliminar" onclick="submit()">
+                <div class="button-eliminar" onclick="this.parentNode.submit()">
                     <i class="fas fa-user-minus"></i>
                     <input class="button-eliminar" type="submit" value="eliminar">
                 </div>

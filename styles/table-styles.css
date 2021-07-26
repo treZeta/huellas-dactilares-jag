@@ -29,6 +29,7 @@ div.button-editar, div.button-eliminar {
 	color: #ffffff;
 	cursor: pointer;
 	border-radius: 3px;
+	transition: .1s all;
 }
 div.button-eliminar{
     background: #e74c3c;
@@ -46,6 +47,26 @@ input.button-eliminar, input.button-editar{
 	color: #ffffff;
 }
 
+div.button-editar:hover, div.button-eliminar:hover{
+	background: #ffffff;
+	outline: 1px solid;
+}
+
+div.button-editar:hover{
+	outline-color: #2ECC71;
+}
+
+div.button-editar:hover i, div.button-editar:hover input{
+	color: #2ECC71;
+}
+
+div.button-eliminar:hover i, div.button-eliminar:hover input{
+	color: #e74c3c;
+}
+
+div.button-eliminar:hover{
+	outline-color: #E74C3C;
+}
 .actions-container{
 	width: 210px;
 	margin-left: 0px;
