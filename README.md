@@ -16,7 +16,7 @@ Recomendable que la version de el IE sea menor a la 11
 
   1. Descargar todos los directorios de el lanzamiento mas reciente del proyecto
   2. Pegarlos en un servidor tal como Xampp o Wampp
-  3. Descargar el archivo de el lanzamiento llamada jagdb.sql e importarlo en phpmyadmin o el gestor que se posea
+  3. Descargar el archivo de el lanzamiento llamado jagdb.sql e importarlo en phpmyadmin o el gestor que se posea
   
   _Listo! ya tienes tu sistema_
 
