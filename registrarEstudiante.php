@@ -16,7 +16,7 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
     <meta name="viewport" content="width=device-width, initial-scale:1.0">
     <script src="https://kit.fontawesome.com/7a32a48a5f.js" crossorigin="anonymous"></script>
     <link rel="icon" href="img/logo_tirpitz_transparente.ico">
-    <title>Registrar Usuarios</title>
+    <title>Registrar Estudiante</title>
     <link rel="stylesheet" href="styles/main.css">
 
 
@@ -58,43 +58,69 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
     $camposErroneos = array();
     $nombres = "";
     $apellidos = "";
-    $id = "";
-    $programaAlimentario = "Almuerzo";
+    $genero = "";
+    $grupoEstudiante = "";
+    $huella1 = "";
+    $huella2 = "";
+    $idEstudiante = "";
+    $programaAlimentario = "";
 
     if (isset($_POST['nombres'])) {
 
-        $nombres = $_POST['nombres'];
-        $apellidos = $_POST['apellidos'];
-        $id = $_POST['id'];
-        $programaAlimentario = $_POST['programaAlimentario'];
-        $huella1 = $_POST['huella1'];
-        $huella2 = $_POST['huella2'];
+        $nombres = trim($_POST['nombres']);
+        $apellidos = trim($_POST['apellidos']);
+        $idEstudiante = trim($_POST['idEstudiante']);
+        $grupoEstudiante = trim($_POST['grupo']);
+        if(isset($_POST['genero'])){
+            $genero = trim($_POST['genero']);
+        }
+        if(isset($_POST['programaAlimentario'])){
+            $programaAlimentario = trim($_POST['programaAlimentario']);
+        }
+        if(isset($_POST['grupo'])){
+            $grupoEstudiante = trim($_POST['grupo']);
+        }
+        $huella1 = trim($_POST['huella1']);
+        $huella2 = trim($_POST['huella2']);
 
-        if (trim($nombres) == "") {
-            array_push($camposErroneos, 'El usuario debe tener un nombre');
+        if ($nombres == "") {
+            array_push($camposErroneos, 'El estudiante debe tener un nombre');
         } else if (strlen($nombres) < 4 || strlen($nombres) > 30) {
             array_push($camposErroneos, 'El nombre debe contener entre 4 y 30 caracteres');
         }
 
-        if (trim($apellidos) == "") {
-            array_push($camposErroneos, 'El usuario debe tener un apellido');
+        if ($apellidos == "") {
+            array_push($camposErroneos, 'El estudiante debe tener un apellido');
         } else if (strlen($apellidos) < 5 || strlen($apellidos) > 30) {
             array_push($camposErroneos, 'Los apellidos deben contener entre 5 y 30 caracteres');
         }
 
-        if (trim($id) == "") {
-            array_push($camposErroneos, 'El usuario debe tener un id');
-        } else if (strlen($id) < 5 || strlen($id) > 30) {
+        if ($idEstudiante == "") {
+            array_push($camposErroneos, 'El estudiante debe tener un id');
+        } else if (strlen($idEstudiante) < 5 || strlen($idEstudiante) > 30) {
             array_push($camposErroneos, 'El id debe contener entre 5 y 30 caracteres');
         }
+        
+        if ($programaAlimentario == ""){
+            array_push($camposErroneos, 'EL estudiante debe tener un programa alimentario');
+        }
 
-        if (trim($huella1) == "") {
+        if ($genero == ""){
+            array_push($camposErroneos, 'El estudiante debe tener un genero');
+        }
+
+        if ($grupoEstudiante == ""){
+            array_push($camposErroneos, 'El estudiante debe pertenecer a un grupo');
+        }
+
+        if ($huella1 == "") {
             array_push($camposErroneos, 'No se ingreso la primera huella');
         }
 
-        if (trim($huella2) == "") {
+        if ($huella2 == "") {
             array_push($camposErroneos, 'No se ingreso la segunda huella');
         }
+        
 
         if (count($camposErroneos) > 0) {
             $camposErroneosHTML = "";
@@ -126,35 +152,49 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
             <?php
             try {
 
-                
+                include_once 'includes/huellas.php';
                 include_once 'includes/student.php';
 
-                $nombres = $_POST['nombres'];
-                $apellidos = $_POST['apellidos'];
-                $id = $_POST['id'];
-                $huella1 = $_POST['huella1'];
-                $huella2 = $_POST['huella2'];
-                $programaAlimentario = $_POST['programaAlimentario'];
+                $nombres = trim($_POST['nombres']);
+                $apellidos = trim($_POST['apellidos']);
+                $idEstudiante = trim($_POST['idEstudiante']);
+                $grupoEstudiante = trim($_POST['grupo']);
+                $genero = trim($_POST['genero']);
+                $huella1 = trim($_POST['huella1']);
+                $huella2 = trim($_POST['huella2']);
+                $programaAlimentario = trim($_POST['programaAlimentario']);
                 
+                
+                $huellas = new huellas();
+                $huellas->setIdHuellas($idEstudiante);
+                $huellas->setHuella1($huella1);
+                $huellas->setHuella2($huella2);
+                $huellas->añadirHuellas();
+        
                 $student = new student();
                 $student->setNombres($nombres);
                 $student->setApellidos($apellidos);
-                $student->setHuella1($huella1);
-                $student->setHuella2($huella2);
-                $student->setID($id);
+                $student->setGenero($genero);
+                $student->setNombreGrupo($grupoEstudiante);
+                $student->setIdEstudiante($idEstudiante);
+                $student->setIdHuellas($huellas->getIdHuellas());
                 $student->setprogramaAlimentario($programaAlimentario);
-                
                 $student->addStudent();
                 
+                $camposErroneos = array();
                 $nombres = "";
                 $apellidos = "";
-                $id = "";
-                $programaAlimentario = "Almuerzo";
+                $genero = "";
+                $grupoEstudiante = "";
+                $huella1 = "";
+                $huella2 = "";
+                $idEstudiante = "";
+                $programaAlimentario = "";
                 ?>
                 <div class='correcto'>
                     <ul>
                         <li>
-                            <p>El usuario fue registrado</p>
+                            <p>El estudiante fue registrado</p>
                         </li>
                     </ul>
                 </div>
@@ -164,7 +204,7 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
                 <div class="error">
                     <ul>
                         <li>
-                            <p>El ID elegido ya esta en uso</p>
+                            <p><?php echo $e ?></p>
                         </li>
                     </ul>
                 </div>
@@ -177,13 +217,11 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 
     <?php
 
-    include "views/registerStudentForm.php";
+    include "views/studentForm.php";
 
     ?>
-
-    <script type="text/javascript" src="js/validarCampos.js"></script>
 </body>
 
-<script type="text/vbscript" src="jmu_create_user.vbs"></script>
+<script type="text/vbscript" src="createUser.vbs"></script>
 
 </html>

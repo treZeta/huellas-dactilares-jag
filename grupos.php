@@ -26,7 +26,7 @@
     include_once 'views/navBar.php';
     include_once 'includes/table.php';
 
-    $table = new table(50, "estudiantes");
+    $table = new table(50, "grupos");
 
     ?>
     
@@ -34,9 +34,9 @@
         <div id="paginas">
             <?php $table->mostrarPaginas() ?>
         </div>
-        <a class="button" href="registrarEstudiante.php">Agregar estudiante</a>
-        <div id="estudiantes">
-            <?php $table->mostrarEstudiantes(); ?>
+        <a class="button" href="registrarGrupo.php">Agregar grupo</a>
+        <div id="grupos">
+            <?php $table->mostrarGrupos(); ?>
         </div>
         <div style="margin-top: 40px" id="paginas">
             <?php $table->mostrarPaginas() ?>

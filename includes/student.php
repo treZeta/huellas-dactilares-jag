@@ -5,10 +5,11 @@
     class student extends db{
         private $nombres;
         private $apellidos;
-        private $huella1;
-        private $huella2;
-        private $id;
+        private $idEstudiante;
+        private $idHuellas;
+        private $nombreGrupo;
         private $programaAlimentario;
+        private $genero;
 
         public function setNombres($nombres){
             $this->nombres = $nombres;
@@ -24,11 +25,12 @@
             return $this->apellidos;
         }
 
-        public function setID($id){
-            $this->id = $id;
+        public function setIdEstudiante($idEstudiante){
+            $this->idEstudiante = $idEstudiante;
         }
-        public function getID(){
-            return $this->id;
+        
+        public function getIdEstudiante(){
+            return $this->idEstudiante;
         }
 
         public function setprogramaAlimentario($programaAlimentario){
@@ -39,39 +41,59 @@
             return $this->programaAlimentario;
         }
 
-        public function setHuella1($huella1){
-            $this->huella1 = $huella1;
+        public function setGenero($genero){
+            $this->genero = $genero;
         }
 
-        public function setHuella2($huella2){
-            $this->huella2 = $huella2;
+        public function getGenero(){
+            return $this->genero;
         }
+
+        public function setNombreGrupo($nombreGrupo){
+            $this->nombreGrupo = $nombreGrupo;
+        }
+
+        public function getGrupo(){
+            return $this->Idgrupo;
+        }
+
+        public function setIdHuellas($idHuellas){
+            $this->idHuellas = $idHuellas;
+        }
+
+        public function getIdHuellas(){
+            return $this->idHuellas;
+        }
+        
+
+        
 
         public function addStudent(){
             $query = $this->connect()->prepare("INSERT INTO estudiantes
-                                                (nombres, apellidos, id, huella1, huella2, programaAlimentario, ultimoReclamo)
-                                                VALUES (:nombres, :apellidos, :id, :huella1, :huella2, :programaAlimentario, '0000-00-00')");
+                                                (nombres, apellidos, idEstudiante, idHuellas, programaAlimentario, nombreGrupo, genero)
+                                                VALUES (:nombres, :apellidos, :idEstudiante, :idHuellas, :programaAlimentario, :nombreGrupo, :genero)");
 
-            $query->execute(array(':nombres' => $this->nombres, ':apellidos' => $this->apellidos, ':id' => $this->id,
-            ':huella1' => $this->huella1, ':huella2' => $this->huella2, ':programaAlimentario' => $this->programaAlimentario));
+            $query->execute(array(':nombres' => $this->nombres, ':apellidos' => $this->apellidos, ':idEstudiante' => $this->idEstudiante,
+            ':idHuellas' => $this->idHuellas, ':nombreGrupo' => $this->nombreGrupo , ':programaAlimentario' => $this->programaAlimentario, ':genero' => $this->genero));
         }
 
         public function deleteStudent(){
-            $query = $this->connect()->prepare("DELETE FROM estudiantes WHERE id = :id");
-            $query->execute(array(':id' => $this->id));
+            $query = $this->connect()->prepare("DELETE FROM estudiantes WHERE idEstudiante = :idEstudiante");
+            $query->execute(array(':idEstudiante' => $this->idEstudiante));
         }
 
-        public function editStudent($id_original){
+        public function editStudent($idEstudianteOriginal){
             $query = $this->connect()->prepare('UPDATE estudiantes
                                                 SET nombres = :nombres, apellidos = :apellidos,
                                                 programaAlimentario = :programaAlimentario,
-                                                huella1 = :huella1, huella2 = :huella2, id = :id
-                                                WHERE id = :id_original');
+                                                idHuellas = :idHuellas, nombreGrupo = :nombreGrupo,
+                                                idEstudiante = :idEstudiante, genero = :genero
+                                                WHERE idEstudiante = :idEstudianteOriginal');
             
             $query->execute(array(':nombres' => $this->nombres, ':apellidos' => $this->apellidos,
-                                  ':programaAlimentario' => $this->programaAlimentario,
-                                  ':huella1' => $this->huella1, ':huella2' => $this->huella2,
-                                  ':id' => $this->id, ':id_original' => $id_original));
+                                  ':programaAlimentario' => $this->programaAlimentario, ':genero' => $this->genero ,
+                                  ':idHuellas' => $this->idHuellas, ':nombreGrupo' => $this->nombreGrupo,
+                                  ':idEstudiante' => $this->idEstudiante, ':idEstudianteOriginal' => $idEstudianteOriginal));
         }
 
     }

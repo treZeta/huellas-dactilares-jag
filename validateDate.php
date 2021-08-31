@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="treZeta">
+    <meta name="author" content="Tirpitz">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="icon" href="img/logo_tirpitz_transparente.ico">
     <title>Reclamo PAE</title>
@@ -21,23 +21,27 @@
         header('Location: login.php');
     }
     
-    $id = $_GET['jmu1'];
+    $idEstudiante = $_GET['jmu1'];
 
     include_once 'includes/db.php';
 
     $db = new db();
 
-    $query = $db->connect()->prepare("SELECT nombres, apellidos, ultimoReclamo, programaAlimentario FROM estudiantes WHERE id = :id");
-    $query->execute(array(':id' => $id));
+    $query = $db->connect()->prepare("SELECT nombres, apellidos, programaAlimentario FROM estudiantes WHERE idEstudiante = :idEstudiante");
+    $query->execute(array(':idEstudiante' => $idEstudiante));
 
-    foreach ($query as $row) {
-        $nombres = $row['nombres'];
-        $apellidos = $row['apellidos'];
-        $ultimoReclamo = $row['ultimoReclamo'];
-        $programaAlimentario = $row['programaAlimentario'];
+    foreach ($query as $estudiante) {
+        $nombres = $estudiante['nombres'];
+        $apellidos = $estudiante['apellidos'];
+        $programaAlimentario = $estudiante['programaAlimentario'];
     }
 
-    if ($ultimoReclamo != date("Y-m-d")) {
+    $query = $db->connect()->prepare("SELECT COUNT(*) FROM entregaPae WHERE idEstudiante = :idEstudiante AND fecha = :fecha");
+    $query->execute(array(":idEstudiante" => $idEstudiante, ":fecha" => date("Y-m-d")));
+    $entregado = $query->fetchColumn();
+    print($entregado);
+
+    if ($entregado == 0) {
     ?>
 
         <div class="container">
@@ -52,8 +56,18 @@
 
     <?php
 
-        $query = $db->connect()->prepare("UPDATE estudiantes SET ultimoReclamo = :fecha WHERE id = :id");
-        $query->execute(array(":fecha" => date("Y-m-d"), ":id" => $id));
+        try{
+            include_once 'includes/entregaPae.php';
+            $entregaPae = new entregaPae();
+            $entregaPae->setIdEstudiante($idEstudiante);
+            $entregaPae->setIdEntrega();
+            $entregaPae->setProgramaAlimentario($programaAlimentario);
+            $entregaPae->setFecha();
+            $entregaPae->añadirEntrega();
+
+        } catch(PDOException $e){
+            print($e);
+        }
     } else {
     ?>
         <div class="container">
