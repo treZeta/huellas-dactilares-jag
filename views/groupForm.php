@@ -2,7 +2,7 @@
     <form autocomplete="off" id="formRegistroGrupos" name="formRegistroGrupos" action="" method="POST"
         onsubmit="return validarCampos()">
 
-        <h1><?php if(isset($_POST['idGrupo'])){ echo "Editar Grupo"; } else { echo "Registrar Grupo"; } ?></h1>
+        <h1><?php if(isset($_POST['nombreGrupoOriginal'])){ echo "Editar Grupo"; } else { echo "Registrar Grupo"; } ?></h1>
         <input type="text" name="nombreGrupo" id="nombreGrupo" placeholder="Nombre del grupo" <?php echo "value='$nombreGrupo'" ?>>
 
         <h3>Grados cursados:</h3>

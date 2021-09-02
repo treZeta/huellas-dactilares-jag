@@ -6,6 +6,7 @@
         <li class="nav-bar__li"><a href="home.php">Inicio</a></li>
         <li class="nav-bar__li"><a href="estudiantes.php">Estudiantes</a></li>
         <li class="nav-bar__li"><a href="grupos.php">Grupos</a></li>
+        <li class="nav-bar__li"><a href="programasAlimentarios.php">Programas alimentarios</a></li>
         <div class="div-with-subnav">
             <li class="nav-bar__li"><a href="#">Servicios</a><i class="fas fa-angle-down"></i></li>
             <ul class="submenus-container">

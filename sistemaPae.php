@@ -59,7 +59,7 @@
             }
             if (vidstart == 1) {
                 alert("VERIFICADO CON �XITO 1 !");
-                window.location = "validateDate.php?jmu1=" + idEstudiante;
+                window.location = "validateDate.php?idEstudiante=" + idEstudiante;
             }
 
         }
@@ -97,6 +97,13 @@ $service = "Refrigerio";
 
 if (isset($_POST['service'])) {
     if ($_POST['service'] == "") {
+        $service = "Refrigerio";
+    } else {
+        $service = "Almuerzo";
+    }
+}
+if (isset($_GET['service'])) {
+    if ($_GET['service'] == "") {
         $service = "Refrigerio";
     } else {
         $service = "Almuerzo";

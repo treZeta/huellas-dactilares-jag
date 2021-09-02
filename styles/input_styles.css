@@ -82,17 +82,22 @@ a.button:hover {
   color: #3498DB;
 }
 
-.button[type="reset"] {
-  width: 130px;
-  font-size: 14px;
+.button-secondary {
+  font-size: 16px;
   background: none;
-  text-decoration: underline;
   border: none;
-  color: #e74c3c;
+  color: #3498DB;
   padding: 9px;
   margin: 20px auto 10px auto;
   display: block;
   cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: all .1s;
+}
+
+.button-secondary:hover{
+  text-decoration-color: #3498db;
 }
 
 .labelRefrigerio {

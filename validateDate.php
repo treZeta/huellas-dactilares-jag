@@ -14,14 +14,37 @@
 <body>
     <?php
 
+    date_default_timezone_set('America/Bogota');
     include_once 'includes/userSession.php';
     $userSession = new userSession();
 
     if (!isset($_SESSION['user'])) {
         header('Location: login.php');
     }
-    
-    $idEstudiante = $_GET['jmu1'];
+
+    if (isset($_POST['idEstudianteRegistrar'])) {
+        $idEstudiante = $_POST['idEstudianteRegistrar'];
+        $programaAlimentario = $_POST['programaAlimentarioRegistrar'];
+        try {
+            include_once 'includes/entregaPae.php';
+            $entregaPae = new entregaPae();
+            $entregaPae->setIdEstudiante($idEstudiante);
+            $entregaPae->setIdEntrega();
+            $entregaPae->setProgramaAlimentario($programaAlimentario);
+            $entregaPae->setFecha();
+            $entregaPae->añadirEntrega();
+            if($programaAlimentario == "Almuerzo"){
+                header('Location: sistemaPae.php?service="Checked"');
+            } else{
+                header('Location: sistemaPae.php');
+            }
+
+        } catch (PDOException $e) {
+            print($e);
+        }
+    }
+
+    $idEstudiante = $_GET['idEstudiante'];
 
     include_once 'includes/db.php';
 
@@ -36,54 +59,29 @@
         $programaAlimentario = $estudiante['programaAlimentario'];
     }
 
-    $query = $db->connect()->prepare("SELECT COUNT(*) FROM entregaPae WHERE idEstudiante = :idEstudiante AND fecha = :fecha");
-    $query->execute(array(":idEstudiante" => $idEstudiante, ":fecha" => date("Y-m-d")));
-    $entregado = $query->fetchColumn();
-    print($entregado);
-
-    if ($entregado == 0) {
-    ?>
-
-        <div class="container">
-            <form action="sistemaPae.php" method="POST">
-                <p class="p-registro"><?php echo $nombres ?> <?php echo $apellidos ?> puede reclamar el <?php echo $programaAlimentario ?></p>
-                <input type="hidden" name="service" value="<?php if ($programaAlimentario == "Almuerzo") {
-                                                                echo "checked";
-                                                            }  ?>">
-                <input type="submit" class="button" value="Regresar">
-            </form>
-        </div>
-
-    <?php
-
-        try{
-            include_once 'includes/entregaPae.php';
-            $entregaPae = new entregaPae();
-            $entregaPae->setIdEstudiante($idEstudiante);
-            $entregaPae->setIdEntrega();
-            $entregaPae->setProgramaAlimentario($programaAlimentario);
-            $entregaPae->setFecha();
-            $entregaPae->añadirEntrega();
-
-        } catch(PDOException $e){
-            print($e);
-        }
-    } else {
-    ?>
-        <div class="container">
-            <form action="sistemaPae.php" method="POST">
-                <p class="p-registro"><?php echo $nombres ?> <?php echo $apellidos ?> ya reclamó el <?php echo $programaAlimentario ?></p>
-                <input type="hidden" name="service" value="<?php if ($programaAlimentario == "Almuerzo") {
-                                                                echo "checked";
-                                                            }  ?>">
-                <input type="submit" class="button" value="Regresar">
-            </form>
-        </div>
-
-    <?php
-    }
+    $query = $db->connect()->prepare("SELECT COUNT(*) FROM entregaPae WHERE idEstudiante = :idEstudiante AND fecha LIKE :fecha");
+    $query->execute(array(":idEstudiante" => $idEstudiante, ":fecha" => date("Y-m-d") . "%"));
+    $numeroEntregas = $query->fetchColumn();
 
     ?>
+
+    <div class="container">
+        <p class="p-registro"><?php echo $nombres ?> <?php echo $apellidos ?> puede reclamar el
+            <?php echo $programaAlimentario ?></p>
+        <p class="p-registro">Ya lo ha reclamado, contando esta, <?php echo $numeroEntregas + 1 ?> veces </p>
+        <form style="display: inline-block; margin-left: 191px;margin-right: 13px;" action="sistemaPae.php" method="POST">
+            <input type="hidden" name="service" value="<?php if ($programaAlimentario == "Almuerzo") {
+                                                            echo "checked";
+                                                        }  ?>">
+            <input type="submit" class="button-secondary" value="Cancelar">
+        </form>
+        <form style="display: inline-block;" action="" method="POST">
+            <input type="hidden" name="idEstudianteRegistrar" value="<?php echo $idEstudiante ?>"">
+                <input type="hidden" name="programaAlimentarioRegistrar" value="<?php echo $programaAlimentario ?>"">
+                <input type="submit" class="button" value="Aceptar">
+        </form>
+    </div>
+
 </body>
 
 </html>

@@ -8,21 +8,23 @@ class entregaPae extends db{
     private $idEntrega;
     private $programaAlimentario;
     private $fecha;
-
+    
     public function setIdEstudiante($idEstudiante){
         $this->idEstudiante = $idEstudiante;
     }
-
+    
     public function setIdEntrega(){
-        $this->idEntrega = $this->idEstudiante . "-" . date("Y-m-d");
+        date_default_timezone_set('America/Bogota');
+        $this->idEntrega = $this->idEstudiante . "-" . date("Y-m-d-H-i-s");
     }
-
+    
     public function setProgramaAlimentario($programaAlimentario){
         $this->programaAlimentario = $programaAlimentario;
     }
-
+    
     public function setFecha(){
-        $this->fecha = date("Y-m-d");
+        date_default_timezone_set('America/Bogota');
+        $this->fecha = date("Y-m-d H:i:s");
     }
 
     public function añadirEntrega(){

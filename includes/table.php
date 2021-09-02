@@ -20,40 +20,19 @@ class table extends db
         $this->entidad = $entidad;
         $this->paginaActual = 1;
 
+        $this->calcularPaginas();
+    }
+
+    public function calcularPaginas(){
 
         if($this->entidad == "estudiantes"){
-            $this->calcularPaginasEstudiantes();
+            $query = $this->connect()->query("SELECT COUNT(*) AS totalRegistros FROM estudiantes");
         } else if($this->entidad == "grupos"){
-            $this->calcularPaginasGrupos();
+            $query = $this->connect()->query("SELECT COUNT(*) AS totalRegistros FROM grupos");
+        } else if($this->entidad == "programasAlimentarios"){
+            $query = $this->connect()->query("SELECT COUNT(*) AS totalRegistros FROM programasAlimentarios");
         }
-    }
 
-    public function calcularPaginasEstudiantes(){
-
-        $query = $this->connect()->query("SELECT COUNT(*) AS totalRegistros FROM estudiantes");
-        $this->numeroDeRegistros = $query->fetch(PDO::FETCH_OBJ)->totalRegistros;
-        $this->totalPaginas = ceil($this->numeroDeRegistros / $this->resultadosPorPagina);
-
-        if (isset($_GET['pagina'])) {
-
-            if (is_numeric($_GET['pagina'])) {
-                if ($_GET['pagina'] > 0 && $_GET['pagina'] <= $this->totalPaginas) {
-                    $this->paginaActual = $_GET['pagina'];
-                    $this->indice = ($this->paginaActual - 1) * ($this->resultadosPorPagina);
-                } else {
-                    echo "No se puede acceder a esta pagina";
-                    $this->error = true;
-                }
-            } else {
-                echo "La pagina debe ser un numero";
-                $this->error = true;
-            }
-        }
-    }
-
-    public function calcularPaginasGrupos(){
-
-        $query = $this->connect()->query("SELECT COUNT(*) AS totalRegistros FROM grupos");
         $this->numeroDeRegistros = $query->fetch(PDO::FETCH_OBJ)->totalRegistros;
         $this->totalPaginas = ceil($this->numeroDeRegistros / $this->resultadosPorPagina);
 
@@ -119,6 +98,30 @@ class table extends db
                 <?php
                 foreach ($query as $grupo) {
                     include 'views/vistaGrupo.php';
+                }
+                ?>
+            </table>
+        <?php
+        } else {
+            echo "Hubo un error";
+        }
+    }
+
+    public function mostrarProgramasAlimentarios()
+    {
+        if (!$this->error) {
+
+            $query = $this->connect()->prepare("SELECT nombreProgramaAlimentario  FROM programasAlimentarios LIMIT :indice, :resultadosPorPagina");
+            $query->execute(array(":indice" => $this->indice, ":resultadosPorPagina" => $this->resultadosPorPagina));
+        ?>
+            <table>
+                <tr>
+                    <th>Nombre del Programa Alimentario</th>
+                    <th>Acciones</th>
+                </tr>
+                <?php
+                foreach ($query as $programaAlimentario) {
+                    include 'views/vistaProgramaAlimentario.php';
                 }
                 ?>
             </table>
