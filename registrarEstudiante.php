@@ -220,8 +220,8 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
     include "views/studentForm.php";
 
     ?>
+    <script type="text/vbscript" src="createUser.vbs"></script>
 </body>
 
-<script type="text/vbscript" src="createUser.vbs"></script>
 
 </html>

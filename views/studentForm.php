@@ -6,15 +6,15 @@
             } else {
                 echo "Registrar Estudiante";
             } ?></h1>
-        <input type="text" name="nombres" id="nombres" placeholder="Nombres" <?php echo "value='$nombres'" ?>>
-        <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos" <?php echo "value='$apellidos'" ?>>
-        <input type="text" name="idEstudiante" id="idEstudiante" placeholder="ID" <?php echo "value='$idEstudiante'" ?>>
+        <input type="text" minlength="4" maxlength="30" required name="nombres" id="nombres" placeholder="Nombres" <?php echo "value='$nombres'" ?>>
+        <input type="text" minlength="5" maxlength="30" required name="apellidos" id="apellidos" placeholder="Apellidos" <?php echo "value='$apellidos'" ?>>
+        <input type="text" minlength="5" maxlength="30" required name="idEstudiante" id="idEstudiante" placeholder="ID" <?php echo "value='$idEstudiante'" ?>>
 
         <h3>Programa Alimentario:</h3>
         <div class="radioContainer">
-            <input type="radio" name="programaAlimentario" id="checkboxAlmuerzo" value="Almuerzo" <?php if ($programaAlimentario == "Almuerzo") {
-                                                                                                        echo "checked";
-                                                                                                    } ?>>
+            <input type="radio" required name="programaAlimentario" id="checkboxAlmuerzo" value="Almuerzo" <?php if ($programaAlimentario == "Almuerzo") {
+                                                                                                                echo "checked";
+                                                                                                            } ?>>
 
             <label class="labelAlmuerzo" for="checkboxAlmuerzo">Almuerzo</label>
         </div>
@@ -28,9 +28,9 @@
 
         <h3>Genero:</h3>
         <div class="radioContainer">
-            <input type="radio" name="genero" id="checkboxGeneroMasculino" value="Masculino" <?php if ($genero == "Masculino") {
-                                                                                                    echo "checked";
-                                                                                                } ?>>
+            <input type="radio" required name="genero" id="checkboxGeneroMasculino" value="Masculino" <?php if ($genero == "Masculino") {
+                                                                                                            echo "checked";
+                                                                                                        } ?>>
             <label class="labelMasculino" for="checkboxGeneroMasculino">Masculino</label>
         </div>
         <div class="radioContainer">
@@ -48,7 +48,9 @@
             $grupos = $grupo->getGrupos();
             foreach ($grupos as $grupo) {
             ?>
-            <option <?php if($grupoEstudiante == $grupo['nombreGrupo']){ echo "selected"; } ?> value="<?php echo $grupo['nombreGrupo']; ?>"><?php echo $grupo['nombreGrupo']; ?></option>
+                <option <?php if ($grupoEstudiante == $grupo['nombreGrupo']) {
+                            echo "selected";
+                        } ?> value="<?php echo $grupo['nombreGrupo']; ?>"><?php echo $grupo['nombreGrupo']; ?></option>
             <?php
             }
             ?>
@@ -60,21 +62,20 @@
             ?>
         </div>
 
-        <input type="submit" class="button" value="Guardar">
-        <input type='hidden' name="huella1" id="huella1" value="">
+        <input onclick="validarCamposEstudiante()" type="button" class="button" value="Guardar">
+        <input type='hidden' name="huella1" id="huella1" value="<?php echo $huella1 ?>">
         <input type='hidden' name='huella1_id' id='huella1_id' value="" size='30'>
-        <input type='hidden' name="huella2" id="huella2" value="">
+        <input type='hidden' name="huella2" id="huella2" value="<?php echo $huella2 ?>">
         <input type='hidden' name='huella2_id' id='huella2_id' value="" size='30'>
         <?php
 
         if (isset($_POST['idEstudianteOriginal'])) {
         ?>
-        <input type='hidden' name='idEstudianteOriginal' id='idEstudianteOriginal' value="<?php echo $_POST['idEstudianteOriginal'] ?>"
-            size='30'>
-        <input type='hidden' name='idHuellasOriginal' id='idHuellasOriginal' value="<?php echo $_POST['idHuellasOriginal'] ?>"
-            size='30'>
+            <input type='hidden' name='idEstudianteOriginal' id='idEstudianteOriginal' value="<?php echo $_POST['idEstudianteOriginal'] ?>" size='30'>
+            <input type='hidden' name='idHuellasOriginal' id='idHuellasOriginal' value="<?php echo $_POST['idHuellasOriginal'] ?>" size='30'>
         <?php
         }
         ?>
     </form>
+    <script type="text/javascript" src="js/validarCamposEstudiante.js"></script>
 </div>

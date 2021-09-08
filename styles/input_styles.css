@@ -57,6 +57,7 @@ select{
 }
 
 .button[type="submit"],
+.button[type="button"],
 a.button {
   font-size: 16px;
   background: #3498db;
@@ -75,6 +76,7 @@ a.button {
 }
 
 .button[type="submit"]:hover,
+.button[type="button"]:hover,
 a.button:hover {
   background: #ffffff;
   outline: 1px solid #3498DB;

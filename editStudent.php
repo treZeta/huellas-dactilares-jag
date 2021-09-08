@@ -78,6 +78,14 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
         $programaAlimentario = $estudiante['programaAlimentario'];
     }
 
+    $query = $db->connect()->prepare("SELECT huella1, huella2 FROM huellas WHERE idHuellas = :idHuellasOriginal");
+    $query->execute(array(':idHuellasOriginal' => $idHuellasOriginal));
+
+    foreach($query as $huellas){
+        $huella1 = $huellas['huella1'];
+        $huella2 = $huellas['huella2'];
+    }
+
     $idEstudiante = $idEstudianteOriginal;
 
     $camposErroneos = array();
