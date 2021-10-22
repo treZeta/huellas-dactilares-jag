@@ -8,9 +8,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale:1.0">
     <script src="https://kit.fontawesome.com/7a32a48a5f.js" crossorigin="anonymous"></script>
-    <link rel="icon" href="img/logo_tirpitz_transparente.ico">
+    <link rel="icon" href="public/img/logo_tirpitz_transparente.ico">
     <title>Registrar Programa Alimentario</title>
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="public/styles/main.css">
 </head>
 
 <body>

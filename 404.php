@@ -8,8 +8,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale:1.0">
     <title>Pagina no encontrada</title>
-    <link rel="icon" href="img/logo_tirpitz_transparente.ico">
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="icon" href="public/img/logo_tirpitz_transparente.ico">
+    <link rel="stylesheet" href="public/styles/main.css">
 </head>
 
 <body>

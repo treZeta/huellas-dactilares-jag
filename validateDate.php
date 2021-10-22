@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Tirpitz">
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="icon" href="img/logo_tirpitz_transparente.ico">
+    <link rel="stylesheet" href="public/styles/main.css">
+    <link rel="icon" href="public/img/logo_tirpitz_transparente.ico">
     <title>Reclamo PAE</title>
 </head>
 

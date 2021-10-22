@@ -1,6 +1,6 @@
 <div id="nav-bar">
     <div id="nav-bar-logo">
-        <img src="img/logo_tirpitz_transparente.png" alt="Imagen tirpitz">
+        <img src="public/img/logo_tirpitz_transparente.png" alt="Imagen tirpitz">
     </div>
     <ul id="nav-bar__ul">
         <li class="nav-bar__li"><a href="home.php">Inicio</a></li>

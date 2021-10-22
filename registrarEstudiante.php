@@ -15,9 +15,9 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale:1.0">
     <script src="https://kit.fontawesome.com/7a32a48a5f.js" crossorigin="anonymous"></script>
-    <link rel="icon" href="img/logo_tirpitz_transparente.ico">
+    <link rel="icon" href="public/img/logo_tirpitz_transparente.ico">
     <title>Registrar Estudiante</title>
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="public/styles/main.css">
 
 
     <?php
@@ -26,8 +26,8 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
     $user_agent = $_SERVER['HTTP_USER_AGENT'];
     if (preg_match('/msie/', $user_agent)) {
         //INTERNET EXPLORER BROWSER
-        $load_enroll_user = '<img id="NotActive" name="NotActive" src="../img/NotActivated.png" />';
-        $load_veri = '<img id="NotActive" name="NotActive" src="../img/NotActivatedVer.png" />';
+        $load_enroll_user = '<img id="NotActive" name="NotActive" src="../public/img/NotActivated.png" />';
+        $load_veri = '<img id="NotActive" name="NotActive" src="../public/img/NotActivatedVer.png" />';
     } else {
         //START | MUITHI | SPAWN USER RIGHTS 11-SEPT-2013
         //-->require_once("jmu_modspawn.php");
@@ -220,7 +220,7 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
     include "views/studentForm.php";
 
     ?>
-    <script type="text/vbscript" src="createUser.vbs"></script>
+    <script type="text/vbscript" src="vbs/createUser.vbs"></script>
 </body>
 
 

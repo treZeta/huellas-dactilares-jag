@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=10">
     <meta name="author" content="Tirpitz">
     <meta name="robots" content="noindex">
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="public/styles/main.css">
     <script src="https://kit.fontawesome.com/7a32a48a5f.js" crossorigin="anonymous"></script>
-    <link rel="icon" href="img/logo_tirpitz_transparente.ico">
+    <link rel="icon" href="public/img/logo_tirpitz_transparente.ico">
     <script type="text/javascript">
         var _app = navigator.appName;
         var rtvregval = -1;
@@ -213,6 +213,6 @@ if (isset($_GET['service'])) {
 
     ?>
 </body>
-<script type='text/vbscript' src="indentifyUser.vbs"></script>
+<script type='text/vbscript' src="vbs/indentifyUser.vbs"></script>
 
 </html>
