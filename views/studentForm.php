@@ -77,5 +77,5 @@
         }
         ?>
     </form>
-    <script type="text/javascript" src="js/validarCamposEstudiante.js"></script>
+    <script type="text/javascript" src="public/js/validarCamposEstudiante.js"></script>
 </div>

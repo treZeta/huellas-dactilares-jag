@@ -1,6 +1,5 @@
 <div class="container">
-    <form autocomplete="off" id="formRegistroGrupos" name="formRegistroGrupos" action="" method="POST"
-        onsubmit="return validarCampos()">
+    <form autocomplete="off" id="formRegistroGrupos" name="formRegistroGrupos" action="" method="POST">
 
         <h1><?php if(isset($_POST['nombreGrupoOriginal'])){ echo "Editar Grupo"; } else { echo "Registrar Grupo"; } ?></h1>
         <input type="text" name="nombreGrupo" id="nombreGrupo" placeholder="Nombre del grupo" <?php echo "value='$nombreGrupo'" ?>>
