@@ -23,31 +23,20 @@
     }
 
     $usuario = "";
-    $camposErroneos = array();
-
+    $errores = array();
+    
     if (isset($_POST['user'])) {
         $usuario = $_POST['user'];
-        if (trim($usuario) == "") {
-            array_push($camposErroneos, "Debes introducir un nombre de usuario");
+        if (trim($_POST['user']) == "") {
+            array_push($errores, "usuario");
         }
         if (trim($_POST['password']) == "") {
-            array_push($camposErroneos, "Debes introducir una contraseña");
+            array_push($errores, "password");
         }
         
-        if (count($camposErroneos) > 0) {
-            $camposErroneosHTML = "";
-    
-            foreach ($camposErroneos as $campoErroneo) {
-                $camposErroneosHTML = $camposErroneosHTML . "<li><p>$campoErroneo</p></li>\n";
-            }
+        if (count($errores) > 0) {
     
         ?>
-
-    <div class="error">
-        <ul>
-            <?php echo $camposErroneosHTML ?>
-        </ul>
-    </div>
 
     <?php
         } else {
@@ -66,15 +55,7 @@
                 die();
 
             } else {
-            ?>
-    <div class="error">
-        <ul>
-            <li>
-                <p>Usuario y/o contraseña incorrectos</p>
-            </li>
-        </ul>
-    </div>
-    <?php
+                array_push($errores, "login");
             }
         }
     }
@@ -84,8 +65,50 @@
         method="POST">
 
         <h1>Login</h1>
-        <input type="text" name="user" id="user" placeholder="Usuario" <?php echo "value='$usuario'" ?>>
-        <input type="password" name="password" id="password" placeholder="Contraseña">
+        <div class="input">
+            <label for="user">
+                <strong>Usuario</strong>
+            </label>
+            <input type="text" name="user" id="user" placeholder="Usuario" <?php echo "value='$usuario'" ?>>
+            <?php
+                if(isset($_POST['user'])){
+                    foreach($errores as $error){
+                        if($error == "usuario"){
+                            ?>
+                            <label for="usuario" class="error">
+                                <strong class="error">Debes introducir un nombre de usuario</strong>
+                            </label>
+                            <?php
+                        } else if($error == "login"){
+                            ?>
+                            <label for="usuario" class="error">
+                                <strong class="error">Usuario y/o contraseña incorrectos</strong>
+                            </label>
+                            <?php
+                        }
+                    }
+                }
+                ?>
+        </div>
+        <div class="input">
+            <label for="password">
+            <strong>Contraseña</strong>  
+            </label>
+            <input type="password" name="password" id="password" placeholder="Contraseña">
+            <?php
+                if(isset($_POST['user'])){
+                    foreach($errores as $error){
+                        if($error == "password"){
+                            ?>
+                            <label for="password" class="error">
+                                <strong class="error">Debes introducir una contraseña</strong>
+                            </label>
+                            <?php
+                        }
+                    }
+                }
+                ?>
+        </div>
         <input type="submit" class="button" value="Iniciar Sesion">
 
     </form>

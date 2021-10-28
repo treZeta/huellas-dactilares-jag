@@ -6,55 +6,79 @@
             } else {
                 echo "Registrar Estudiante";
             } ?></h1>
-        <input type="text" minlength="4" maxlength="30" required name="nombres" id="nombres" placeholder="Nombres" <?php echo "value='$nombres'" ?>>
-        <input type="text" minlength="5" maxlength="30" required name="apellidos" id="apellidos" placeholder="Apellidos" <?php echo "value='$apellidos'" ?>>
-        <input type="text" minlength="5" maxlength="30" required name="idEstudiante" id="idEstudiante" placeholder="ID" <?php echo "value='$idEstudiante'" ?>>
 
-        <h3>Programa Alimentario:</h3>
-        <div class="radioContainer">
-            <input type="radio" required name="programaAlimentario" id="checkboxAlmuerzo" value="Almuerzo" <?php if ($programaAlimentario == "Almuerzo") {
+        <div class="input">
+            <label for="nombres">
+                <strong>Nombres</strong>
+            </label>
+            <input type="text" minlength="4" maxlength="30" required name="nombres" id="nombres" placeholder="Nombres" <?php echo "value='$nombres'" ?>>
+        </div>
+
+
+        <div class="input">
+            <label for="apellidos">
+                <strong>Apellidos</strong>
+            </label>
+            <input type="text" minlength="5" maxlength="30" required name="apellidos" id="apellidos" placeholder="Apellidos" <?php echo "value='$apellidos'" ?>>
+        </div>
+
+        <div class="input">
+            <label for="idEstudiante">
+                <strong>Id del estudiante</strong>
+            </label>
+            <input type="text" minlength="5" maxlength="30" required name="idEstudiante" id="idEstudiante" placeholder="ID" <?php echo "value='$idEstudiante'" ?>>
+        </div>
+
+        <div class="input">
+            <h3>Programa Alimentario:</h3>
+            <div class="radioContainer">
+                <input type="radio" required name="programaAlimentario" id="checkboxAlmuerzo" value="Almuerzo" <?php if ($programaAlimentario == "Almuerzo") {
+                                                                                                                    echo "checked";
+                                                                                                                } ?>>
+                <label class="labelAlmuerzo" for="checkboxAlmuerzo">Almuerzo</label>
+            </div>
+            <div class="radioContainer">
+                <input type="radio" name="programaAlimentario" id="checkboxRefrigerio" value="Refrigerio" <?php if ($programaAlimentario == "Refrigerio") {
                                                                                                                 echo "checked";
                                                                                                             } ?>>
-
-            <label class="labelAlmuerzo" for="checkboxAlmuerzo">Almuerzo</label>
-        </div>
-        <div class="radioContainer">
-            <input type="radio" name="programaAlimentario" id="checkboxRefrigerio" value="Refrigerio" <?php if ($programaAlimentario == "Refrigerio") {
-                                                                                                            echo "checked";
-                                                                                                        } ?>>
-            <label class="labelRefrigerio" for="checkboxRefrigerio">Refrigerio</label>
+                <label class="labelRefrigerio" for="checkboxRefrigerio">Refrigerio</label>
+            </div>
         </div>
 
 
-        <h3>Genero:</h3>
-        <div class="radioContainer">
-            <input type="radio" required name="genero" id="checkboxGeneroMasculino" value="Masculino" <?php if ($genero == "Masculino") {
-                                                                                                            echo "checked";
-                                                                                                        } ?>>
-            <label class="labelMasculino" for="checkboxGeneroMasculino">Masculino</label>
-        </div>
-        <div class="radioContainer">
-            <input type="radio" name="genero" id="checkboxGeneroFemenino" value="Femenino" <?php if ($genero == "Femenino") {
-                                                                                                echo "checked";
-                                                                                            } ?>>
-            <label class="labelGeneroFemenino" for="checkboxGeneroFemenino">Femenino</label>
+        <div class="input">
+            <h3>Genero:</h3>
+            <div class="radioContainer">
+                <input type="radio" required name="genero" id="checkboxGeneroMasculino" value="Masculino" <?php if ($genero == "Masculino") {
+                                                                                                                echo "checked";
+                                                                                                            } ?>>
+                <label class="labelMasculino" for="checkboxGeneroMasculino">Masculino</label>
+            </div>
+            <div class="radioContainer">
+                <input type="radio" name="genero" id="checkboxGeneroFemenino" value="Femenino" <?php if ($genero == "Femenino") {
+                                                                                                    echo "checked";
+                                                                                                } ?>>
+                <label class="labelGeneroFemenino" for="checkboxGeneroFemenino">Femenino</label>
+            </div>
         </div>
 
-        <select name="grupo" id="grupo">
-            <option value="" hidden>Selecciona un grupo</option>
-            <?php
-            include_once 'includes/grupo.php';
-            $grupo = new grupo();
-            $grupos = $grupo->getGrupos();
-            foreach ($grupos as $grupo) {
-            ?>
-                <option <?php if ($grupoEstudiante == $grupo['nombreGrupo']) {
-                            echo "selected";
-                        } ?> value="<?php echo $grupo['nombreGrupo']; ?>"><?php echo $grupo['nombreGrupo']; ?></option>
-            <?php
-            }
-            ?>
-        </select>
+        <div class="input">
+            <select name="grupo" id="grupo">
+                <option value="" hidden>Selecciona un grupo</option>
+                <?php
+                include_once 'includes/grupo.php';
+                $grupo = new grupo();
+                $grupos = $grupo->getGrupos();
+                foreach ($grupos as $grupo) {
+                ?>
+                    <option <?php if ($grupoEstudiante == $grupo['nombreGrupo']) {
+                                echo "selected";
+                            } ?> value="<?php echo $grupo['nombreGrupo']; ?>"><?php echo $grupo['nombreGrupo']; ?></option>
+                <?php
+                }
+                ?>
+            </select>
+        </div>
 
         <div class="fingerprint-writer-container">
             <?php
@@ -77,5 +101,5 @@
         }
         ?>
     </form>
-    <script type="text/javascript" src="js/validarCamposEstudiante.js"></script>
+    <script type="text/javascript" src="public/js/validarCamposEstudiante.js"></script>
 </div>

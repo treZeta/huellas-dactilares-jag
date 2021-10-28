@@ -32,21 +32,5 @@ h1{
 }
 
 .error {
-	background: #e74c3c;
-}
-
-.error, .correcto{
-	border-radius: 3px;
-	padding: 5px;
-	width: 300px;
-	margin: 25px auto;
-}
-
-.error > ul > li, .correcto > ul > li {
-	margin: 10px 20px;
-    list-style: square;
-}
-
-.correcto {
-	background: #2ecc71;
+	color: #e74c3c;
 }
