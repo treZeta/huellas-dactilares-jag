@@ -25,24 +25,24 @@ function validarCamposEstudiante() {
     if(nombres.value.trim() == ""){
         crearLabelDeError(nombres, "El estudiante debe tener un nombre");
         error = true;
-    } else if(nombres.value.length < 4 || nombres.value.length > 30){
+    } else if(nombres.value.trim().length < 4 || nombres.value.trim().length > 30){
         crearLabelDeError(nombres, "Los nombres deben contener entre 4 y 30 caracteres");
         error = true;
     }
     
-    if(apellidos.value.length == ""){
+    if(apellidos.value.trim() == ""){
         crearLabelDeError(apellidos, "El estudiante debe tener un apellido");
         error = true;
-    } else if(apellidos.value.length < 5 || apellidos.value.length > 30){
+    } else if(apellidos.value.trim().length < 5 || apellidos.value.trim().length > 30){
         crearLabelDeError(apellidos, "Los apellidos deben contener entre 5 y 30 caracteres");
         error = true;
     }
     
-    if(idEstudiante.value.length == ""){
+    if(idEstudiante.value.trim() == ""){
         crearLabelDeError(idEstudiante, "El estudiante debe tener un ID");
         error = true;
         camposErroneos.push("");
-    } else if(idEstudiante.value.length < 5 || idEstudiante.value.length > 30){
+    } else if(idEstudiante.value.trim().length < 5 || idEstudiante.value.trim().length > 30){
         crearLabelDeError(idEstudiante, "El id debe contener entre 5 y 30 caracteres");
         error = true;
     }
@@ -72,10 +72,8 @@ function validarCamposEstudiante() {
         error = true;
     }
     
-    if(error = false){
+    if(error == false){
         document.querySelector("form").submit();
-    } else {
-        window.scrollTo({ top: 130, behavior: 'smooth' });
     }
 
     
@@ -84,9 +82,10 @@ function validarCamposEstudiante() {
 
 function crearLabelDeError(input, texto){
     label = document.createElement("LABEL");
-    label.classList.add("error")
+    label.classList.add("error");
     label.setAttribute("for", input.getAttribute("id"));
     input.parentNode.classList.toggle("shake");
     label.innerHTML = "<strong>" + texto + "</strong";
     input.parentNode.appendChild(label);
+    setTimeout(function(){input.parentNode.classList.toggle("shake");}, 500);
 }

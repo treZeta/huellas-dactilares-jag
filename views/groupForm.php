@@ -66,7 +66,7 @@
 
         </div>
 
-        <input type="submit" class="button" value="Guardar">
+        <input onclick="validarCamposGrupo()" type="button" class="button" value="Guardar">
         <?php
         if (isset($_POST['nombreGrupoOriginal'])) {
         ?>
@@ -75,5 +75,6 @@
         <?php
         }
         ?>
+        <script type="text/javascript" src="public/js/validarCamposGrupo.js"></script>
     </form>
 </div>
