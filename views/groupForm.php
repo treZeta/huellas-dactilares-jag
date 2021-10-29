@@ -2,11 +2,13 @@
     <form autocomplete="off" id="formRegistroGrupos" name="formRegistroGrupos" action="" method="POST">
 
         <h1><?php if(isset($_POST['nombreGrupoOriginal'])){ echo "Editar Grupo"; } else { echo "Registrar Grupo"; } ?></h1>
-        <input type="text" name="nombreGrupo" id="nombreGrupo" placeholder="Nombre del grupo" <?php echo "value='$nombreGrupo'" ?>>
+        <div class="input">
+            <strong>Nombre del grupo</strong>
+            <input type="text" name="nombreGrupo" id="nombreGrupo" placeholder="Nombre del grupo" <?php echo "value='$nombreGrupo'" ?>>
+        </div>
 
-        <h3>Grados cursados:</h3>
-
-        <div class="optionsContainer">
+        <div class="input">
+            <h3>Grados cursados:</h3>
             <div class="checkboxContainer">
                 <input type="checkbox" name="gradosCursados[]" id="checkboxPreescolar" value="0" <?php foreach($gradosCursados as $gradoCursado) { if($gradoCursado == "0") { echo "checked"; } } ?>>
                 <label class="labelPreescolar" for="checkboxPreescolar">Preescolar</label>
@@ -31,36 +33,37 @@
                 <input type="checkbox" name="gradosCursados[]" id="checkboxQuinto" value="5" <?php foreach($gradosCursados as $gradoCursado) { if($gradoCursado == "5") { echo "checked"; } } ?>>
                 <label class="labelQuinto" for="checkboxQuinto">Quinto</label>
             </div>
-            
+        
             <div class="checkboxContainer">
                 <input type="checkbox" name="gradosCursados[]" id="checkboxSexto" value="6" <?php foreach($gradosCursados as $gradoCursado) { if($gradoCursado == "6") { echo "checked"; } } ?>>
                 <label class="labelSexto" for="checkboxSexto">Sexto</label>
             </div>
-            
+        
             <div class="checkboxContainer">
                 <input type="checkbox" name="gradosCursados[]" id="checkbox7" value="7" <?php foreach($gradosCursados as $gradoCursado) { if($gradoCursado == "7") { echo "checked"; } } ?>>
                 <label class="labelSeptimo" for="checkboxSeptimo">Septimo</label>
             </div>
-            
+        
             <div class="checkboxContainer">
                 <input type="checkbox" name="gradosCursados[]" id="checkboxOctavo" value="8" <?php foreach($gradosCursados as $gradoCursado) { if($gradoCursado == "8") { echo "checked"; } } ?>>
                 <label class="labelOctavo" for="checkboxOctavo">Octavo</label>
             </div>
-            
+        
             <div class="checkboxContainer">
                 <input type="checkbox" name="gradosCursados[]" id="checkboxNoveno" value="9" <?php foreach($gradosCursados as $gradoCursado) { if($gradoCursado == "9") { echo "checked"; } } ?>>
                 <label class="labelNoveno" for="checkboxNoveno">Noveno</label>
             </div>
-            
+        
             <div class="checkboxContainer">
                 <input type="checkbox" name="gradosCursados[]" id="checkboxDecimo" value="10" <?php foreach($gradosCursados as $gradoCursado) { if($gradoCursado == "10") { echo "checked"; } } ?>>
                 <label class="labelDecimo" for="checkboxDecimo">Decimo</label>
             </div>
-            
+        
             <div class="checkboxContainer">
                 <input type="checkbox" name="gradosCursados[]" id="checkboxOnce" value="11" <?php foreach($gradosCursados as $gradoCursado) { if($gradoCursado == "11") { echo "checked"; } } ?>>
                 <label class="labelOnce" for="checkboxOnce">Once</label>
             </div>
+
         </div>
 
         <input type="submit" class="button" value="Guardar">

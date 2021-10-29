@@ -1,14 +1,8 @@
 function validarCamposEstudiante() {
 
     var camposErroneos = [];
-    var nombres = document.getElementById('nombres');
-    var apellidos = document.getElementById('apellidos');
-    var idEstudiante = document.getElementById('idEstudiante');
-    var huella1 = document.getElementById('huella1');
-    var huella2 = document.getElementById('huella2');
-    var programaAlimentario = document.getElementsByName('programaAlimentario');
-    var genero = document.getElementsByName('genero');
-    var grupo = document.getElementById('grupo');
+    var nombreGrupo = document.getElementById('nombreGrupo');
+    var grados = document.getElementsByName("gradosCursados[]");
     var error = false;
 
     var labels = document.getElementsByClassName("error");
@@ -22,8 +16,8 @@ function validarCamposEstudiante() {
     }
 
 
-    if(nombres.value.trim() == ""){
-        crearLabelDeError(nombres, "El estudiante debe tener un nombre");
+    if(nombres.value.trim().length == ""){
+        crearLabelDeError(nombreGrupo, "El grupo debe tener un nombre");
         error = true;
     } else if(nombres.value.length < 4 || nombres.value.length > 30){
         crearLabelDeError(nombres, "Los nombres deben contener entre 4 y 30 caracteres");
@@ -74,8 +68,6 @@ function validarCamposEstudiante() {
     
     if(error = false){
         document.querySelector("form").submit();
-    } else {
-        window.scrollTo({ top: 130, behavior: 'smooth' });
     }
 
     
@@ -84,9 +76,10 @@ function validarCamposEstudiante() {
 
 function crearLabelDeError(input, texto){
     label = document.createElement("LABEL");
-    label.classList.add("error")
+    label.classList.add("error");
     label.setAttribute("for", input.getAttribute("id"));
     input.parentNode.classList.toggle("shake");
     label.innerHTML = "<strong>" + texto + "</strong";
     input.parentNode.appendChild(label);
+    setTimeout(function(){input.parentNode.classList.toggle("shake");}, 500);
 }

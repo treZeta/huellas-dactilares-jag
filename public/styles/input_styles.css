@@ -57,7 +57,6 @@ form > h3{
 .optionsContainer{
   height: 200px;
   width: 300px;
-  margin: 20px 0 20px 80px;
   overflow-y: scroll;
 }
 
