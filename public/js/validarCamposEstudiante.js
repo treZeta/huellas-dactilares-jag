@@ -74,8 +74,6 @@ function validarCamposEstudiante() {
     
     if(error = false){
         document.querySelector("form").submit();
-    } else {
-        window.scrollTo({ top: 130, behavior: 'smooth' });
     }
 
     
@@ -84,9 +82,10 @@ function validarCamposEstudiante() {
 
 function crearLabelDeError(input, texto){
     label = document.createElement("LABEL");
-    label.classList.add("error")
+    label.classList.add("error");
     label.setAttribute("for", input.getAttribute("id"));
     input.parentNode.classList.toggle("shake");
     label.innerHTML = "<strong>" + texto + "</strong";
     input.parentNode.appendChild(label);
+    setTimeout(function(){input.parentNode.classList.toggle("shake");}, 500);
 }
