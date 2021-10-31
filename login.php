@@ -26,7 +26,7 @@
     $errores = array();
     
     if (isset($_POST['user'])) {
-        $usuario = $_POST['user'];
+        $usuario = trim($_POST['user']);
         if (trim($_POST['user']) == "") {
             array_push($errores, "usuario");
         }
@@ -41,8 +41,8 @@
     <?php
         } else {
     
-            $userForm = $_POST['user'];
-            $passForm = $_POST['password'];
+            $userForm = trim($_POST['user']);
+            $passForm = trim($_POST['password']);
     
             include_once 'includes/user.php';
     

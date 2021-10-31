@@ -24,12 +24,12 @@ Recomendable que la version de el IE sea menor a la 11
 
 ### Todo el equipo de _Tirpitz_
 
-* **Juan Pablo Mendoza Zapata** - *Trabajo Inicial* - [treZeta](https://github.com/treZeta/)
-* **Miguel Angel Grajales** - *Aca va un rol che*
-* **Juan Manuel Cañas** - *Aca va un rol che*
-* **Samuel David Serpa Zapa** - *Aca va un rol che*
-* **Esteban Mira** - *Aca va un rol che*
-* **Camilo Usme** - *Aca va un rol che*
+* **Juan Pablo Mendoza Zapata** - *Desarrollador Backend* - [treZeta](https://github.com/treZeta/)
+* **Miguel Angel Grajales** - *Desarrollador Frontend*
+* **Juan Manuel Cañas** - *Desarrollador Frontend*
+* **Samuel David Serpa Zapa** - *Desarrollador Backend*
+* **Esteban Mira** - *Administrador de proyecto*
+* **Camilo Usme** - *Base de datos*
 
 ## Copyright 📄
 
