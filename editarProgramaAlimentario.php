@@ -69,16 +69,7 @@
 
     <?php
         } else {
-        ?>
-    <div class="correcto">
-        <ul>
-            <li>
-                <p>Datos correctos</p>
-            </li>
-        </ul>
-    </div>
-
-    <?php
+            
             try {
 
                 $nombreProgramaAlimentario = trim($_POST['nombreProgramaAlimentario']);
@@ -102,15 +93,7 @@
     <?php
             header('Location: programasAlimentarios.php');
             } catch (PDOException $e) {
-            ?>
-    <div class="error">
-        <ul>
-            <li>
-                <p>El nombre elegido ya esta en uso</p>
-            </li>
-        </ul>
-    </div>
-    <?php
+                $nombreEnUso = true;
             }
         }
     }

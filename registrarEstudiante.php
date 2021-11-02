@@ -71,13 +71,13 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
         $apellidos = trim($_POST['apellidos']);
         $idEstudiante = trim($_POST['idEstudiante']);
         $grupoEstudiante = trim($_POST['grupo']);
-        if(isset($_POST['genero'])){
+        if (isset($_POST['genero'])) {
             $genero = trim($_POST['genero']);
         }
-        if(isset($_POST['programaAlimentario'])){
+        if (isset($_POST['programaAlimentario'])) {
             $programaAlimentario = trim($_POST['programaAlimentario']);
         }
-        if(isset($_POST['grupo'])){
+        if (isset($_POST['grupo'])) {
             $grupoEstudiante = trim($_POST['grupo']);
         }
         $huella1 = trim($_POST['huella1']);
@@ -100,16 +100,16 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
         } else if (strlen($idEstudiante) < 5 || strlen($idEstudiante) > 30) {
             array_push($camposErroneos, 'El id debe contener entre 5 y 30 caracteres');
         }
-        
-        if ($programaAlimentario == ""){
+
+        if ($programaAlimentario == "") {
             array_push($camposErroneos, 'EL estudiante debe tener un programa alimentario');
         }
 
-        if ($genero == ""){
+        if ($genero == "") {
             array_push($camposErroneos, 'El estudiante debe tener un genero');
         }
 
-        if ($grupoEstudiante == ""){
+        if ($grupoEstudiante == "") {
             array_push($camposErroneos, 'El estudiante debe pertenecer a un grupo');
         }
 
@@ -120,7 +120,7 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
         if ($huella2 == "") {
             array_push($camposErroneos, 'No se ingreso la segunda huella');
         }
-        
+
 
         if (count($camposErroneos) > 0) {
             $camposErroneosHTML = "";
@@ -137,19 +137,9 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
                 </ul>
             </div>
 
-        <?php
+    <?php
         } else {
 
-        ?>
-            <div class='correcto'>
-                <ul>
-                    <li>
-                        <p>Datos correctos</p>
-                    </li>
-                </ul>
-            </div>
-
-            <?php
             try {
 
                 include_once 'includes/huellas.php';
@@ -163,14 +153,14 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
                 $huella1 = trim($_POST['huella1']);
                 $huella2 = trim($_POST['huella2']);
                 $programaAlimentario = trim($_POST['programaAlimentario']);
-                
-                
+
+
                 $huellas = new huellas();
                 $huellas->setIdHuellas($idEstudiante);
                 $huellas->setHuella1($huella1);
                 $huellas->setHuella2($huella2);
                 $huellas->añadirHuellas();
-        
+
                 $student = new student();
                 $student->setNombres($nombres);
                 $student->setApellidos($apellidos);
@@ -180,7 +170,7 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
                 $student->setIdHuellas($huellas->getIdHuellas());
                 $student->setprogramaAlimentario($programaAlimentario);
                 $student->addStudent();
-                
+
                 $camposErroneos = array();
                 $nombres = "";
                 $apellidos = "";
@@ -190,26 +180,9 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
                 $huella2 = "";
                 $idEstudiante = "";
                 $programaAlimentario = "";
-                ?>
-                <div class='correcto'>
-                    <ul>
-                        <li>
-                            <p>El estudiante fue registrado</p>
-                        </li>
-                    </ul>
-                </div>
-            <?php
+                header('Location: estudiantes.php');
             } catch (PDOException $e) {
-            ?>
-                <div class="error">
-                    <ul>
-                        <li>
-                            <p><?php echo $e ?></p>
-                        </li>
-                    </ul>
-                </div>
-
-    <?php
+                $idEnUso = true;
             }
         }
     }

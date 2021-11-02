@@ -112,15 +112,7 @@
     <?php
             header('Location: grupos.php');
             } catch (PDOException $e) {
-            ?>
-    <div class="error">
-        <ul>
-            <li>
-                <p>El nombre elegido ya esta en uso</p>
-            </li>
-        </ul>
-    </div>
-    <?php
+                $nombreEnUso = true;
             }
         }
     }

@@ -22,8 +22,8 @@ function validarCamposGrupo() {
     }
     
     var gradoSeleccionado = false;
-    for(grado of grados){
-        if(grado.checked){
+    for(i = 0; i < grados.length; i++){
+        if(grados[i].checked){
            gradoSeleccionado = true; 
         }
     }
