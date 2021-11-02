@@ -242,8 +242,6 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
     include "views/studentForm.php";
 
     ?>
-
-    <script type="text/javascript" src="js/validarCampos.js"></script>
 </body>
 
 <script type="text/vbscript" src="vbs/createUser.vbs"></script>
