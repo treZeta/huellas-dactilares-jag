@@ -76,8 +76,8 @@
             <input type="submit" class="button-secondary" value="Cancelar">
         </form>
         <form style="display: inline-block;" action="" method="POST">
-            <input type="hidden" name="idEstudianteRegistrar" value="<?php echo $idEstudiante ?>"">
-                <input type="hidden" name="programaAlimentarioRegistrar" value="<?php echo $programaAlimentario ?>"">
+            <input type="hidden" name="idEstudianteRegistrar" value="<?php echo $idEstudiante ?>">
+                <input type="hidden" name="programaAlimentarioRegistrar" value="<?php echo $programaAlimentario ?>">
                 <input type="submit" class="button" value="Aceptar">
         </form>
     </div>
