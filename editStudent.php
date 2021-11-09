@@ -164,16 +164,6 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
     <?php
         } else {
 
-        ?>
-    <div class='correcto'>
-        <ul>
-            <li>
-                <p>Datos correctos</p>
-            </li>
-        </ul>
-    </div>
-
-    <?php
             try {
 
                 include_once 'includes/huellas.php';
@@ -222,16 +212,7 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
     <?php
                 header('Location: estudiantes.php');
             } catch (PDOException $e) {
-            ?>
-    <div class="error">
-        <ul>
-            <li>
-                <p><?php echo $e ?></p>
-            </li>
-        </ul>
-    </div>
-
-    <?php
+                $idEnUso = true;
             }
         }
     }

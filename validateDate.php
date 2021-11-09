@@ -22,9 +22,9 @@
         header('Location: login.php');
     }
 
-    if (isset($_POST['idEstudianteRegistrar'])) {
-        $idEstudiante = $_POST['idEstudianteRegistrar'];
-        $programaAlimentario = $_POST['programaAlimentarioRegistrar'];
+    if (isset($_GET['idEstudianteRegistrar'])) {
+        $idEstudiante = $_GET['idEstudianteRegistrar'];
+        $programaAlimentario = $_GET['programaAlimentarioRegistrar'];
         try {
             include_once 'includes/entregaPae.php';
             $entregaPae = new entregaPae();
@@ -66,20 +66,28 @@
     ?>
 
     <div class="container">
-        <p class="p-registro"><?php echo $nombres ?> <?php echo $apellidos ?> puede reclamar el
-            <?php echo $programaAlimentario ?></p>
+        <p class="p-registro"><?php echo $nombres ?> <?php echo $apellidos ?> puede reclamar el <?php echo $programaAlimentario ?></p>
         <p class="p-registro">Ya lo ha reclamado, contando esta, <?php echo $numeroEntregas + 1 ?> veces </p>
+        <?php
+        if($numeroEntregas > 0){
+        ?>
         <form style="display: inline-block; margin-left: 191px;margin-right: 13px;" action="sistemaPae.php" method="POST">
             <input type="hidden" name="service" value="<?php if ($programaAlimentario == "Almuerzo") {
                                                             echo "checked";
                                                         }  ?>">
             <input type="submit" class="button-secondary" value="Cancelar">
         </form>
-        <form style="display: inline-block;" action="" method="POST">
-            <input type="hidden" name="idEstudianteRegistrar" value="<?php echo $idEstudiante ?>"">
-                <input type="hidden" name="programaAlimentarioRegistrar" value="<?php echo $programaAlimentario ?>"">
-                <input type="submit" class="button" value="Aceptar">
+        <form style="display: inline-block;" action="" method="GET">
+            <input type="hidden" name="idEstudianteRegistrar" value="<?php echo $idEstudiante ?>">
+            <input type="hidden" name="programaAlimentarioRegistrar" value="<?php echo $programaAlimentario ?>">
+            <input type="submit" class="button" value="Aceptar">
         </form>
+        <?php
+        } else{
+            $url = "validateDate.php?idEstudianteRegistrar=" . $idEstudiante . "&programaAlimentarioRegistrar=" . $programaAlimentario;
+            header("refresh:2;url={$url}");
+        }
+        ?>
     </div>
 
 </body>

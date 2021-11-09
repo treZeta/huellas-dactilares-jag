@@ -2,9 +2,18 @@
     <form autocomplete="off" id="formRegistroGrupos" name="formRegistroGrupos" action="" method="POST">
 
         <h1><?php if(isset($_POST['nombreGrupoOriginal'])){ echo "Editar Grupo"; } else { echo "Registrar Grupo"; } ?></h1>
-        <div class="input">
+        <div class="input <?php if(isset($nombreEnUso)) { echo "shake"; } ?>">
             <strong>Nombre del grupo</strong>
             <input type="text" name="nombreGrupo" id="nombreGrupo" placeholder="Nombre del grupo" <?php echo "value='$nombreGrupo'" ?>>
+            <?php
+            if(isset($nombreEnUso)) { 
+                ?>
+                <label for="nombreGrupo" class="error">
+                    <strong>El nombre elegido ya está seleccionado</strong>
+                </label>
+                <?php
+            }
+            ?>
         </div>
 
         <div class="input">
